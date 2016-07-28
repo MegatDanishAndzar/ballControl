@@ -13,7 +13,7 @@ float easing = 0.005; //variable for easing and the value for easing is 0.005
 void setup() { //set up for one-time
   size(1000, 500); //Size of the stage
   strokeWeight(2);  //Stroke for the Ellipse
-   noCursor();//hide the cursor (cursor icon)
+  noCursor();//hide the cursor (cursor icon)
 }
 
 void draw() { //set up for loop
@@ -66,7 +66,7 @@ void draw() { //set up for loop
   //end of drawing scorpio  
 
   if (mousePressed ==true) {//indicate if u left-click
-    fill(123, 234, 120);//the background will change to green
+    fill(123, 234, 120);//the egg will change to green
   } else {//if mouse button were released
     fill(51);//the background will turn back to gray
   }
@@ -82,9 +82,15 @@ void draw() { //set up for loop
     y = 250;//position of the ellipse will be y=250
   }
   ellipse(500, y, 50, 30);//size of the ellipe
-  fill(255,255,255);//background colour
+  fill(255, 255, 255);//background colour
+  text("Press SPACEBAR to make mini ellipse to turn to rainbow", 20, 20);//text line 1
+  text("Press OTHER KEY to return ellipse to white", 20, 35);//text line 2
+  text("Hold LMB to make the egg green", 20, 50);//text line 3
+  text("Press UP or DOWN to change position of the egg", 20, 65);//text line 4
+  text("Press R to reset", 20, 80);//text line 4
 }
 
-void keyPressed() {if ((key == 'R') || (key == 'r'))//if R button is pressed
-  redraw(); // Run the code in draw one time
+void keyPressed() {
+  if ((key == 'R') || (key == 'r'))//if R button is pressed
+    redraw(); // Run the code in draw one time
 }
