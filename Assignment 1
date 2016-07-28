@@ -1,0 +1,90 @@
+//Assignment 1 - ballcontrol
+//Name: Megat Danish Andzar bin Abd Samad
+//ID: 1132702823
+//Lecturer: Dr Kim Yonggeun
+//Lecturer:Dr. Forest Lim Yang Peng
+//Subject Code: MMA 2013
+//Subject: Interaction Design
+
+float x; //variable for x
+float y; //variable for y
+float easing = 0.005; //variable for easing and the value for easing is 0.005
+
+void setup() { //set up for one-time
+  size(1000, 500); //Size of the stage
+  strokeWeight(2);  //Stroke for the Ellipse
+   noCursor();//hide the cursor (cursor icon)
+}
+
+void draw() { //set up for loop
+  background(51); //background colour
+  frameRate(20); //the framerate of the code
+  println(mouseX + " : " + mouseY); //this is for track and print mouse coordinate (Mouse Data)
+
+  //code for changing the background by the location of the cursor
+  if (mouseX < 500) { //indicate that if mouse position in X axis lower than 500
+    rect(height/2, width/2, 500, 250); // the background will turn gray
+  } else { //indicate that anything other than above event happen
+    rect(0, 0, width, height); // the background will turn white
+  }
+
+  //Line for ellipse X
+  line(mouseX, mouseY, pmouseX, pmouseY);//path for center
+  line(mouseX+20, mouseY+20, pmouseX+20, pmouseY+20);//path for 1st bottom right
+  line(mouseX+20, mouseY-20, pmouseX+20, pmouseY-20);//path for 1st top right
+  line(mouseX+40, mouseY-40, pmouseX+40, pmouseY-40);//path for 2nd top right
+  line(mouseX+40, mouseY+40, pmouseX+40, pmouseY+40);//path for 2nd bottom right
+  line(mouseX-40, mouseY-40, pmouseX-40, pmouseY-40);//path for 2nd top left
+  line(mouseX-40, mouseY+40, pmouseX-40, pmouseY+40);//path for 2nd bottom left
+  line(mouseX-20, mouseY-20, pmouseX-20, pmouseY-20);//path for 1st top left
+  line(mouseX-20, mouseY+20, pmouseX-20, pmouseY+20);//path for 1st bottom left
+  //end of the line 
+
+  float targetX = mouseX; //indicate that targetX is equal to position of cursor in X axis
+  float dx = targetX - x; //indicate that dx is equal to targetX minus by X  axis (based on cursor location)
+  x += dx * easing; //remnant of the cursor movement
+
+  float targetY = mouseY; //indicate that targetX is equal to position of cursor in X axis
+  float dy = targetY - y; //indicate that dx is equal to targetX minus by X  axis (based on cursor location)
+  y += dy * easing; //remnant of the cursor movement
+
+
+  if (key == ' ')//if button is pressed
+  { 
+    fill (random(0, 255), random(0, 255), random(0, 255));//random colour of the ellipse
+  }
+  //Drawing of the scorpio
+  ellipse(mouseX, mouseY, 13, 13); //middle
+  ellipse(mouseX+20, mouseY+20, 13, 13);//1st bottom right  
+  ellipse(mouseX+20, mouseY-20, 13, 13);//1st top right  
+  ellipse(mouseX+40, mouseY-40, 13, 13);//2nd top right  
+  ellipse(mouseX+40, mouseY+40, 13, 13);//2nd bottom right  
+  ellipse(mouseX-40, mouseY-40, 13, 13);//2nd top left  
+  ellipse(mouseX-40, mouseY+40, 13, 13);//2nd bottom left  
+  ellipse(mouseX-20, mouseY-20, 13, 13);//1st top left 
+  ellipse(mouseX-20, mouseY+20, 13, 13);//1st bottom left 
+  //end of drawing scorpio  
+
+  if (mousePressed ==true) {//indicate if u left-click
+    fill(123, 234, 120);//the background will change to green
+  } else {//if mouse button were released
+    fill(51);//the background will turn back to gray
+  }
+
+  line(350, 250, 650, 250); //Line in the center
+  if (key == CODED) { //indicate that if key is pressed
+    if (keyCode == UP) { //if up button is pressed
+      y = 235; // y will equal to 235
+    } else if (keyCode == DOWN) { //if down button is pressed
+      y = 265;// y will equal to 265
+    }
+  } else {//others than above condition
+    y = 250;//position of the ellipse will be y=250
+  }
+  ellipse(500, y, 50, 30);//size of the ellipe
+  fill(255,255,255);//background colour
+}
+
+void keyPressed() {if ((key == 'R') || (key == 'r'))//if R button is pressed
+  redraw(); // Run the code in draw one time
+}
